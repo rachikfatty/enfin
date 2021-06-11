@@ -34,8 +34,8 @@ def calculSimplex(m,n,c,b_ub,b_eq):
         d1.grid(row=0, column=j + 1)
         
     k=0
-    for i in range(2):
-        for j in range(3):
+    for i in range(m):
+        for j in range(n):
             e = Label(level2,text=str(resultat[k]))
             e.grid(row =i+1 ,column=j+1 )
             k += 1
