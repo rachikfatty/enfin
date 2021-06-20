@@ -63,7 +63,7 @@ class Login:
         btn_pass.place(x=90,y=260)
     def register_window(self):
         self.root.destroy()
-        
+        import registration
         
     def login(self):
         if self.txt_email.get()=="" or self.txt_passwd.get()=="" :
