@@ -36,7 +36,7 @@ def bar():
         time.sleep(0.03)
         t=t+1
     r.destroy()
-    import registration
+    import log
     
 
 
