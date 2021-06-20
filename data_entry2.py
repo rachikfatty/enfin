@@ -5,8 +5,8 @@ from tkinter import ttk,messagebox
 
 
 def Valider(a,b):
-    level1 = Toplevel()
-    level1.geometry("1000x350")
+    level1 = Tk()
+    level1.geometry("1100x350")
     level1.title("Data Entry")
     frame1 = Frame(level1,width=700,height=350)
     frame1.place(x=300,y=0)
