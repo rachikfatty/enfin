@@ -1,4 +1,4 @@
-import data_entry2 as back
+from data_entry2 import Valider
 from tkinter import *
 from tkinter import ttk,messagebox
 from PIL import Image,ImageTk
@@ -34,16 +34,19 @@ class Entries:
         y = IntVar()
         f = ttk.Entry(self.root, textvariable=y,justify = CENTER)
         f.place(x=500,y=80)
+        def bb():
+            self.root.destroy()
+            Valider(x.get(), y.get())
 
         myButton1 = Button(self.root, text="Annuler",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=quit)
         myButton1.place(x=800,y=120)
 
-        myButton2 = Button(self.root, text="Valider",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=lambda: back.Valider(x.get(), y.get()))
+        myButton2 = Button(self.root, text="Valider",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bb)
         myButton2.place(x=700,y=120)
 
+root = Tk()
+obj = Entries(root)
+root.mainloop()  
 
     
       
-root = Tk()    
-obj = Entries(root)
-root.mainloop()
