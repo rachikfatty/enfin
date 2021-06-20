@@ -57,6 +57,12 @@ def calculSimplex(m,n,c,b_ub,b_eq):
             e = Label(frame1,text=str(resultat[k]),font=('Calibri (Body)',10,"bold"),fg="green",bd=0)
             e.place(x=(j*100)+50+120,y=(i*20)+20+20 )
             k += 1
+    def bu():
+        level2.destroy()
+        import data_entry1
+
+    myButton2 = Button(level2, text="Try Again",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bu)
+    myButton2.place(x=700,y=120)
     level2.mainloop()
 
 
