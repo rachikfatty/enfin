@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import ttk,messagebox
 from PIL import Image,ImageTk
 import pymysql
-from log import Login
 
 class Register:
 
@@ -100,9 +99,7 @@ class Register:
         self.root.attributes("-topmost", True)
     def login_window(self):
         self.root.destroy()
-        r = Tk()
-        obj = Login(r)
-        r.mainloop()
+        import log
 
     def register_data(self):
         if self.txt_fname.get()=="" or self.txt_lname.get()=="" or self.txt_email.get()=="" or self.txt_phone.get()=="" or self.txt_indus.get()=="Please Select" or self.txt_user.get()=="Please Select" or self.txt_passwd.get()=="" or self.txt_confpass.get()=="" :
