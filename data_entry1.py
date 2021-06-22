@@ -2,11 +2,13 @@ from data_entry2 import Valider
 from tkinter import *
 from tkinter import ttk,messagebox
 from PIL import Image,ImageTk
+import numpy as np
 
 class Entries:
     def __init__(self,root):
         self.root = root
-        self.root.title("Data Entry")
+        blank_space ="  "
+        self.root.title(80*blank_space+"Data Entry")
         self.root.geometry("1000x350")
 
         self.left = ImageTk.PhotoImage(file="images/fside.jpg")
@@ -38,10 +40,10 @@ class Entries:
             self.root.destroy()
             Valider(x.get(), y.get())
 
-        myButton1 = Button(self.root, text="Annuler",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=quit)
+        myButton1 = Button(self.root, text="Reset",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=quit)
         myButton1.place(x=800,y=120)
 
-        myButton2 = Button(self.root, text="Valider",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bb)
+        myButton2 = Button(self.root, text="Continue",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bb)
         myButton2.place(x=700,y=120)
 
 root = Tk()
