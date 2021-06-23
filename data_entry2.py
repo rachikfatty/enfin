@@ -4,7 +4,7 @@ from calculSimplex import calculSimplex
 from tkinter import ttk,messagebox
 
 
-def Valider(a,b):
+def Continue(a,b):
     b1=b
     level1 = Tk()
     level1.geometry("1100x350")
@@ -47,6 +47,8 @@ def Valider(a,b):
     l2.configure(font=lst2)
     l2.place(x=80,y=80)
     
+    lbl = Label(subframe,text="Matrix of Costs",font=('Calibri (Body)',10,"bold"),fg="black")
+    lbl.place(x=(175+(b-1)*50),y=0)
     for i in range(a):
         s1 = Label(subframe, text="S" + str(i + 1),font=('Calibri (Body)',10,"bold"),fg="gray32")
         s1.place(x=50, y=(i*20)+40)
@@ -64,29 +66,29 @@ def Valider(a,b):
     c_temp = []
     for i in range(1, a + 1):
         for j in range(1, b + 1):
-            entry =ttk.Entry(subframe,justify = CENTER)
-            entry.place(x=(j*100)+50,y=(i*20)+20)
-            c_temp.append(entry)
+            entry1 =ttk.Entry(subframe,justify = CENTER)
+            entry1.place(x=(j*100)+50,y=(i*20)+20)
+            c_temp.append(entry1)
     
     # Deamnd
     b_eq_temp = []
     for i in range(1, b + 1):
-        entry = ttk.Entry(subframe,justify = CENTER)
-        entry.place(x=(i*100)+50, y=(a*20) + 48)
-        b_eq_temp.append(entry)
+        entry2 = ttk.Entry(subframe,justify = CENTER)
+        entry2.place(x=(i*100)+50, y=(a*20) + 48)
+        b_eq_temp.append(entry2)
     
     # Supply
     b_ub_temp = []
     for i in range(1, a + 1):
-        entry = ttk.Entry(subframe,justify = CENTER)
-        entry.place(x=(b*100)+200,y=(i*20)+20)
-        b_ub_temp.append(entry)
+        entry3 = ttk.Entry(subframe,justify = CENTER)
+        entry3.place(x=(b*100)+200,y=(i*20)+20)
+        b_ub_temp.append(entry3)
 
     
     def get_cost():    
         entry_list1 = []
         for entries in c_temp:
-            entry_list1.append(int(entries.get()))
+            entry_list1.append(entries.get())
         c1 = np.array([entry_list1])
         return c1
 
@@ -105,9 +107,46 @@ def Valider(a,b):
         return b_ub1
 
     def get_All_Entries():
-        c = get_cost()
+        c = get_cost() 
         b_eq = get_b_eq()
         b_ub = get_b_ub()
+
+        for i in range(len(c[0])):
+            try :
+                int(c[0][i])
+            except ValueError:
+                messagebox.showerror("Error","Please r-enter Costs using valid numbers!",parent=level1)
+                       
+        for i in range(len(b_eq)):
+            try:
+                int(b_eq[i])
+            except ValueError:
+                messagebox.showerror("Error","Please r-enter Demand using valid numbers!",parent=level1)
+        for i in range(len(b_ub)):
+            try:
+                int(b_ub[i])
+            except ValueError:
+                messagebox.showerror("Error","Please r-enter Supply using valid numbers!",parent=level1)
+
+        for i in range(len(c[0])): 
+            if int(c[0][i])<=0:
+                messagebox.showerror("Error","All fields are required!",parent=level1)
+            else:
+                continue
+        for i in range(len(b_eq)):  
+            if int(b_eq[i])<=0:
+                messagebox.showerror("Error","All fields are required!",parent=level1)
+            else:
+                continue 
+
+        for i in range(len(b_ub)):  
+            if int(b_ub[i])<=0:
+                messagebox.showerror("Error","All fields are required!",parent=level1)
+                
+            else:
+                continue 
+        
+                
         total_2=0
         for q in b_eq:
             total_2 = total_2 + int(q)
@@ -115,20 +154,31 @@ def Valider(a,b):
         total_1=0
         for b in b_ub:
             total_1 = total_1 + int(b)
-        
-        if int(total_2) >= int(total_1) :
-            messagebox.showerror("ERROR","Supply must be greater than demand !",parent=level1)    
+
+        if int(total_2) > int(total_1) :
+            messagebox.showerror("ERROR","Supply must be greater than demand !",parent=level1)   
+
         else:  
             level1.destroy()
             calculSimplex(a,b1,c,b_ub,b_eq)    
             
-    ValButt = Button(subframe, text="Continue", command=get_All_Entries,bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794")
-    ValButt.place(x=(b*100)+400, y=(a*20)+48+40)
+    ValButt = Button(subframe, text="Continue", command=get_All_Entries,bd=0,cursor="hand2",width=10,font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794")
+    ValButt.place(x=(b*100)+300, y=(a*20)+48+40)
     def back():
         level1.destroy()
         import data_entry1
+    BACKSPACE = ''    
+    def reset():
+        for i in subframe.winfo_children():
+            entry1.delete(0,END)
+        for i in subframe.winfo_children():
+            entry2.delete(0,END)
+        for i in subframe.winfo_children():
+            entry3.delete(0,END)    
+         
+    myButton1 = Button(subframe, text="Back",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),width=10,fg="white",bg="#249794", command=back )
+    myButton1.place(x=(b*100)+200,y=(a*20)+48+40)
 
-    myButton1 = Button(subframe, text="Back",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=back )
-    myButton1.place(x=(b*100)+300,y=(a*20)+48+40)
-
+    myButton2 = Button(subframe, text="Reset",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794",width=10, command=reset)
+    myButton2.place(x=(b*100)+100,y=(a*20)+48+40)
     level1.mainloop()   
