@@ -1,4 +1,4 @@
-from data_entry2 import Valider
+from data_entry2 import Continue
 from tkinter import *
 from tkinter import ttk,messagebox
 from PIL import Image,ImageTk
@@ -36,14 +36,25 @@ class Entries:
         y = IntVar()
         f = ttk.Entry(self.root, textvariable=y,justify = CENTER)
         f.place(x=500,y=80)
-        def bb():
-            self.root.destroy()
-            Valider(x.get(), y.get())
+        def entry1():
+            try:
+               int(f.get())
+               int(e.get())
+               self.root.destroy()
+               Continue(x.get(),y.get())
 
-        myButton1 = Button(self.root, text="Reset",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=quit)
+            except ValueError:
+                messagebox.showerror("a fkn error","u better work dumb bitch!!",parent=self.root)
+                messagebox.showerror("Error","Please Enter A Valid Number!",parent=self.root)
+
+        def reset():
+            e.delete(0,END)
+            f.delete(0,END)
+      
+        myButton1 = Button(self.root, text="Reset",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794",width=10, command=reset)
         myButton1.place(x=800,y=120)
 
-        myButton2 = Button(self.root, text="Continue",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bb)
+        myButton2 = Button(self.root, text="Continue",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794",width=10, command=entry1)
         myButton2.place(x=700,y=120)
 
 root = Tk()
