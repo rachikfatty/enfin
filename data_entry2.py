@@ -1,5 +1,7 @@
 import numpy as np
 from tkinter import *
+
+from scipy.sparse.linalg.isolve.iterative import _stoptest
 from calculSimplex import calculSimplex
 from tkinter import ttk,messagebox
 
@@ -169,12 +171,8 @@ def Continue(a,b):
         import data_entry1
     BACKSPACE = ''    
     def reset():
-        for i in subframe.winfo_children():
-            entry1.delete(0,END)
-        for i in subframe.winfo_children():
-            entry2.delete(0,END)
-        for i in subframe.winfo_children():
-            entry3.delete(0,END)    
+        level1.destroy()
+        Continue(a,b1)
          
     myButton1 = Button(subframe, text="Back",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),width=10,fg="white",bg="#249794", command=back )
     myButton1.place(x=(b*100)+200,y=(a*20)+48+40)
