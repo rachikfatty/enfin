@@ -72,10 +72,10 @@ def calculSimplex(m,n,c,b_ub,b_eq):
             total = total + int(c_simp[0][b])*resultat[b]
 
     tot = Label(subframe, text="The minimum total transportation cost",font=('Calibri (Body)',10,"bold"),fg="gray32")
-    tot.place(x=0, y=(m*20)+80)
+    tot.place(x=30, y=(m*20)+90)
 
     tot1 = Label(subframe, text=str(total),font=('Calibri (Body)',10,"bold"),fg="green")
-    tot1.place(x=250, y=(m*20)+80)
+    tot1.place(x=280, y=(m*20)+90)
 
     for i in range(m):
         s1 = Label(subframe, text="S" + str(i + 1),font=('Calibri (Body)',10,"bold"),fg="gray32")
@@ -95,6 +95,6 @@ def calculSimplex(m,n,c,b_ub,b_eq):
         level2.destroy()
         import data_entry1
     
-    myButton2 = Button(subframe, text="Try Again",bd=0,cursor="hand2",font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bu)
+    myButton2 = Button(subframe, text="Try Again",bd=0,cursor="hand2",width=10,font=('Calibri (Body)',10,"bold"),fg="white",bg="#249794", command=bu)
     myButton2.place(x=(n*100)+175,y=(m*20)+140)
     level2.mainloop()
